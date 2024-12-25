@@ -2,25 +2,26 @@
  *  @returns {boolean} True if the gift is inside the box
  */
 function inBox(box) {
-    let encontre = false
+    let encontre = false;
 
-    box.forEach(line => {
-        if (line.indexOf('*') == -1) {
+    box.forEach((line, index) => {
+        // Saltar la primera y última línea
+        if (index === 0 || index === box.length - 1) return;
+
+        // Encontrar el índice del *
+        const pos = line.indexOf('*');
+
+        // Verificar si el * está dentro de los bordes
+        if (pos > 0 && pos < line.length - 1) {
+            encontre = true;
         }
-        else {
-            encontre = true
-        }
-        console.log(line); // Imprime cada línea de la caja
-
-
     });
 
-    return encontre
+    return encontre;
 }
-
 const box = [
     "###",
-    "#*#",
+    "# #",
     "###"
 ];
 const prueba = inBox(box)
